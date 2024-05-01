@@ -3,7 +3,7 @@ variable "project" {
 }
 
 variable "pool" {
-  description = ""
+  description = "The pool with its name and mapping between repository and roles to apply"
   type = object({
     name = optional(string, "github-pool")
     attributes = map(object({
@@ -36,7 +36,7 @@ variable "pool" {
 }
 
 variable "pool_providers" {
-  description = "Configures providers for the workload identity pool"
+  description = "Configures providers for the workload identity pool with condition which are applied when mapping repository"
   type = map(
     object({ attribute_conditions : map(string) })
   )

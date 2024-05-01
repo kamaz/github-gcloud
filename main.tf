@@ -55,7 +55,7 @@ resource "google_iam_workload_identity_pool_provider" "main" {
     "google.subject" = "assertion.sub"
   }, { for k, v in each.value.attribute_conditions : "attribute.${k}" => "assertion.${k}" })
 
-  attribute_condition = join(" && ", [for k in sort(keys(each.value.attribute_conditions)) : "assertion.${k} == ${each.value.attribute_conditions[k]}"])
+  attribute_condition = join(" && ", [for k in sort(keys(each.value.attribute_conditions)) : "assertion.${k} == '${each.value.attribute_conditions[k]}'"])
 
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
